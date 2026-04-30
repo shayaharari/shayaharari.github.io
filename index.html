@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shaya Harari — Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy: #0a1628;
+      --navy-mid: #122040;
+      --gold: #c9a84c;
+      --gold-light: #e8c97a;
+      --cream: #f5f0e8;
+      --white: #ffffff;
+      --gray: #8a9ab5;
+      --gray-light: #dce3ef;
+      --text: #1a2540;
+    }
+ 
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+ 
+    html { scroll-behavior: smooth; }
+ 
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+ 
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 4rem;
+      background: rgba(10, 22, 40, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(201,168,76,0.2);
+    }
+ 
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      color: var(--gold);
+      letter-spacing: 0.05em;
+      text-decoration: none;
+    }
+ 
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+ 
+    .nav-links a {
+      color: var(--gray);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+ 
+    .nav-links a:hover { color: var(--gold); }
+ 
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      background: var(--navy);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 8rem 4rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+ 
+    #hero::before {
+      content: '';
+      position: absolute;
+      top: -200px; right: -200px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(201,168,76,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+ 
+    #hero::after {
+      content: '';
+      position: absolute;
+      bottom: -100px; left: -100px;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(201,168,76,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+ 
+    .hero-text { position: relative; z-index: 1; }
+ 
+    .hero-tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid rgba(201,168,76,0.4);
+      padding: 0.4rem 1rem;
+      border-radius: 2px;
+      margin-bottom: 1.8rem;
+      animation: fadeUp 0.8s ease both;
+    }
+ 
+    h1.hero-name {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3rem, 6vw, 5.5rem);
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1.05;
+      margin-bottom: 1.5rem;
+      animation: fadeUp 0.8s 0.1s ease both;
+    }
+ 
+    h1.hero-name span { color: var(--gold); }
+ 
+    .hero-desc {
+      font-size: 1.05rem;
+      color: var(--gray);
+      line-height: 1.75;
+      max-width: 480px;
+      margin-bottom: 2.5rem;
+      font-weight: 300;
+      animation: fadeUp 0.8s 0.2s ease both;
+    }
+ 
+    .hero-cta {
+      display: flex;
+      gap: 1rem;
+      animation: fadeUp 0.8s 0.3s ease both;
+    }
+ 
+    .btn-primary {
+      background: var(--gold);
+      color: var(--navy);
+      padding: 0.85rem 2rem;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.9rem;
+      letter-spacing: 0.05em;
+      border-radius: 2px;
+      transition: background 0.2s, transform 0.2s;
+    }
+ 
+    .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+ 
+    .btn-outline {
+      border: 1px solid rgba(201,168,76,0.5);
+      color: var(--gold);
+      padding: 0.85rem 2rem;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.9rem;
+      letter-spacing: 0.05em;
+      border-radius: 2px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+ 
+    .btn-outline:hover { border-color: var(--gold); transform: translateY(-2px); }
+ 
+    .hero-image {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      animation: fadeUp 0.8s 0.4s ease both;
+    }
+ 
+    .hero-image img {
+      width: 340px;
+      height: 420px;
+      object-fit: cover;
+      border-radius: 4px;
+      border: 2px solid rgba(201,168,76,0.3);
+      box-shadow: 0 30px 80px rgba(0,0,0,0.4);
+    }
+ 
+    .hero-image .img-placeholder {
+      width: 340px;
+      height: 420px;
+      background: var(--navy-mid);
+      border-radius: 4px;
+      border: 2px dashed rgba(201,168,76,0.3);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: var(--gray);
+      font-size: 0.85rem;
+      text-align: center;
+      gap: 0.5rem;
+    }
+ 
+    /* ── SECTIONS ── */
+    section { padding: 6rem 4rem; }
+ 
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.75rem;
+    }
+ 
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 3rem;
+      line-height: 1.2;
+    }
+ 
+    /* ── ABOUT ── */
+    #about {
+      background: var(--white);
+    }
+ 
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 5rem;
+      align-items: start;
+      max-width: 1100px;
+    }
+ 
+    .about-bio {
+      font-size: 1.05rem;
+      line-height: 1.85;
+      color: #3a4a6b;
+      font-weight: 300;
+    }
+ 
+    .about-bio p { margin-bottom: 1.2rem; }
+ 
+    .skills-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 0.5rem;
+    }
+ 
+    .skill-tag {
+      background: var(--cream);
+      color: var(--navy);
+      padding: 0.4rem 1rem;
+      border-radius: 2px;
+      font-size: 0.82rem;
+      font-weight: 500;
+      border: 1px solid var(--gray-light);
+      transition: border-color 0.2s, color 0.2s;
+    }
+ 
+    .skill-tag:hover { border-color: var(--gold); color: var(--gold); }
+ 
+    .skills-section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 0.75rem;
+      margin-top: 1.5rem;
+    }
+ 
+    /* ── PROJECTS ── */
+    #projects {
+      background: var(--cream);
+    }
+ 
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+      max-width: 1100px;
+    }
+ 
+    .project-card {
+      background: var(--white);
+      border-radius: 4px;
+      overflow: hidden;
+      border: 1px solid var(--gray-light);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+ 
+    .project-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 50px rgba(10,22,40,0.12);
+    }
+ 
+    .project-img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+ 
+    .project-img-placeholder {
+      width: 100%;
+      height: 200px;
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(201,168,76,0.4);
+      font-size: 2.5rem;
+    }
+ 
+    .project-body { padding: 1.8rem; }
+ 
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-bottom: 1rem;
+    }
+ 
+    .project-tag {
+      background: var(--cream);
+      color: var(--navy);
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      padding: 0.25rem 0.65rem;
+      border-radius: 2px;
+    }
+ 
+    .project-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 0.75rem;
+    }
+ 
+    .project-desc {
+      font-size: 0.9rem;
+      color: #5a6a8a;
+      line-height: 1.7;
+      font-weight: 300;
+    }
+ 
+    /* ── EXPERIENCE ── */
+    #experience {
+      background: var(--navy);
+    }
+ 
+    #experience .section-title { color: var(--white); }
+ 
+    .timeline { max-width: 800px; }
+ 
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 130px 1fr;
+      gap: 2rem;
+      padding: 2.5rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+ 
+    .timeline-item:last-child { border-bottom: none; }
+ 
+    .timeline-date {
+      font-size: 0.8rem;
+      color: var(--gold);
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      padding-top: 0.2rem;
+    }
+ 
+    .timeline-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 0.3rem;
+    }
+ 
+    .timeline-company {
+      font-size: 0.85rem;
+      color: var(--gold);
+      margin-bottom: 0.75rem;
+      font-weight: 500;
+    }
+ 
+    .timeline-desc {
+      font-size: 0.9rem;
+      color: var(--gray);
+      line-height: 1.7;
+      font-weight: 300;
+    }
+ 
+    /* ── CONTACT ── */
+    #contact {
+      background: var(--white);
+      text-align: center;
+    }
+ 
+    #contact .section-title { margin-bottom: 1rem; }
+ 
+    .contact-sub {
+      font-size: 1rem;
+      color: var(--gray);
+      margin-bottom: 3rem;
+      font-weight: 300;
+    }
+ 
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+ 
+    .contact-link {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+      text-decoration: none;
+      color: var(--navy);
+      padding: 1.5rem 2rem;
+      border: 1px solid var(--gray-light);
+      border-radius: 4px;
+      min-width: 160px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+ 
+    .contact-link:hover {
+      border-color: var(--gold);
+      transform: translateY(-4px);
+    }
+ 
+    .contact-link-label {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+ 
+    .contact-link-value {
+      font-size: 0.9rem;
+      color: var(--navy);
+    }
+ 
+    /* ── FOOTER ── */
+    footer {
+      background: var(--navy);
+      text-align: center;
+      padding: 2rem;
+      color: var(--gray);
+      font-size: 0.8rem;
+      border-top: 1px solid rgba(201,168,76,0.15);
+    }
+ 
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+ 
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+ 
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+ 
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      #hero { grid-template-columns: 1fr; padding: 7rem 1.5rem 3rem; text-align: center; }
+      .hero-cta { justify-content: center; }
+      .hero-image { display: none; }
+      section { padding: 4rem 1.5rem; }
+      .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .timeline-item { grid-template-columns: 1fr; gap: 0.5rem; }
+      .contact-links { flex-direction: column; align-items: center; }
+    }
+  </style>
+</head>
+<body>
+ 
+  <!-- NAV -->
+  <nav>
+    <a class="nav-logo" href="#hero">S. Harari</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+ 
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-text">
+      <div class="hero-tag">Portfolio · 2026</div>
+      <h1 class="hero-name">Shaya<br /><span>Harari</span></h1>
+      <p class="hero-desc">
+        NYU Stern BTE Graduate with a passion for FinTech and a strong drive toward Finance,
+        bringing a technology-forward mindset to solving real financial challenges.
+      </p>
+      <div class="hero-cta">
+        <a href="#projects" class="btn-primary">View Projects</a>
+        <a href="#contact" class="btn-outline">Get in Touch</a>
+      </div>
+    </div>
+    <div class="hero-image">
+      <!-- Replace with: <img src="images/headshot.jpg" alt="Shaya Harari"> -->
+      <div class="img-placeholder">
+        <span style="font-size:2rem;">📷</span>
+        <span>Add your headshot<br/>images/headshot.jpg</span>
+      </div>
+    </div>
+  </section>
+ 
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="about-grid reveal">
+      <div>
+        <p class="section-label">About Me</p>
+        <h2 class="section-title">Finance-driven.<br/>Technology-minded.</h2>
+        <div class="about-bio">
+          <p>I am a Business, Technology, and Entrepreneurship student at NYU Stern with a strong foundation in finance, technology, and entrepreneurship.</p>
+          <p>I have hands-on experience in finance through an internship at Banco General, and I have demonstrated an entrepreneurial drive by founding Distribuidora Bone S.A., a construction materials distribution company in Panama.</p>
+          <p>Beyond business, I bring a competitive analytical mindset shaped by being a Gold Medalist in Panama's National Mathematics Olympiad. I am passionate about FinTech and actively pursuing a career in finance where I can bridge technology and capital markets.</p>
+        </div>
+      </div>
+      <div>
+        <p class="section-label">Skills &amp; Tools</p>
+ 
+        <p class="skills-section-title">Technical</p>
+        <div class="skills-grid">
+          <span class="skill-tag">Advanced Excel</span>
+          <span class="skill-tag">Financial Modeling</span>
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">SQL</span>
+          <span class="skill-tag">Microsoft Office Suite</span>
+        </div>
+ 
+        <p class="skills-section-title">AI &amp; Technology</p>
+        <div class="skills-grid">
+          <span class="skill-tag">Claude</span>
+          <span class="skill-tag">ChatGPT</span>
+          <span class="skill-tag">AI Tools</span>
+        </div>
+ 
+        <p class="skills-section-title">Languages</p>
+        <div class="skills-grid">
+          <span class="skill-tag">English (Native)</span>
+          <span class="skill-tag">Spanish (Native)</span>
+        </div>
+ 
+        <p class="skills-section-title">Soft Skills</p>
+        <div class="skills-grid">
+          <span class="skill-tag">Leadership</span>
+          <span class="skill-tag">Entrepreneurship</span>
+          <span class="skill-tag">Team Management</span>
+          <span class="skill-tag">Analytical Thinking</span>
+        </div>
+      </div>
+    </div>
+  </section>
+ 
+  <!-- PROJECTS -->
+  <section id="projects">
+    <p class="section-label reveal">Selected Work</p>
+    <h2 class="section-title reveal">Projects &amp; Highlights</h2>
+    <div class="projects-grid">
+ 
+      <div class="project-card reveal">
+        <!-- <img src="images/project-1.jpg" alt="Distribuidora Bone S.A." class="project-img"> -->
+        <div class="project-img-placeholder">🏗️</div>
+        <div class="project-body">
+          <div class="project-tags">
+            <span class="project-tag">Entrepreneurship</span>
+            <span class="project-tag">Operations</span>
+            <span class="project-tag">Sales</span>
+          </div>
+          <h3 class="project-title">Distribuidora Bone S.A.</h3>
+          <p class="project-desc">Founded and operated a construction materials distribution company in Panama, managing all business functions including operations, sales, logistics, and client acquisition for large-scale residential projects.</p>
+        </div>
+      </div>
+ 
+      <div class="project-card reveal">
+        <!-- <img src="images/project-2.jpg" alt="Banco General" class="project-img"> -->
+        <div class="project-img-placeholder">🏦</div>
+        <div class="project-body">
+          <div class="project-tags">
+            <span class="project-tag">Finance</span>
+            <span class="project-tag">Banking</span>
+            <span class="project-tag">Analytics</span>
+          </div>
+          <h3 class="project-title">Banco General — Finance Intern</h3>
+          <p class="project-desc">Interned on the finance and customer service teams, gaining direct exposure to core banking operations, internal processes, and professional analytical skills — learning directly from staff to build a deeper understanding of financial systems.</p>
+        </div>
+      </div>
+ 
+      <div class="project-card reveal">
+        <!-- <img src="images/project-3.jpg" alt="Fulton Market Analysis" class="project-img"> -->
+        <div class="project-img-placeholder">👟</div>
+        <div class="project-body">
+          <div class="project-tags">
+            <span class="project-tag">Market Analysis</span>
+            <span class="project-tag">Strategy</span>
+            <span class="project-tag">Consulting</span>
+          </div>
+          <h3 class="project-title">Fulton — Market Analysis</h3>
+          <p class="project-desc">Collaborated with a New York footwear startup to analyze market opportunities, evaluate customer segments, and identify strategic pathways for business expansion — developing expertise in competitive market analysis.</p>
+        </div>
+      </div>
+ 
+      <div class="project-card reveal">
+        <!-- <img src="images/project-4.jpg" alt="Math Olympiad" class="project-img"> -->
+        <div class="project-img-placeholder">🥇</div>
+        <div class="project-body">
+          <div class="project-tags">
+            <span class="project-tag">Mathematics</span>
+            <span class="project-tag">Quantitative</span>
+            <span class="project-tag">Competition</span>
+          </div>
+          <h3 class="project-title">Panama Math Olympiad — Gold Medal</h3>
+          <p class="project-desc">Ranked in the top three students nationwide, earning a Gold Medal in Panama's National Mathematics Olympiad — demonstrating exceptional quantitative reasoning, analytical precision, and problem-solving ability under pressure.</p>
+        </div>
+      </div>
+ 
+    </div>
+  </section>
+ 
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <p class="section-label reveal">Background</p>
+    <h2 class="section-title reveal">Experience &amp; Education</h2>
+    <div class="timeline">
+ 
+      <div class="timeline-item reveal">
+        <div class="timeline-date">Jan 2025 — Present</div>
+        <div>
+          <h3 class="timeline-title">Founder &amp; Owner</h3>
+          <div class="timeline-company">Distribuidora Bone S.A. · Panamá City, Panamá</div>
+          <p class="timeline-desc">Founded a construction materials distribution company serving large-scale residential projects across Panama. Managed all aspects of the business including operations, purchases, logistics, client acquisition, inventory management, and sales growth.</p>
+        </div>
+      </div>
+ 
+      <div class="timeline-item reveal">
+        <div class="timeline-date">Jun 2024 — Aug 2024</div>
+        <div>
+          <h3 class="timeline-title">Finance Intern</h3>
+          <div class="timeline-company">Banco General · Panamá City, Panamá</div>
+          <p class="timeline-desc">Shadowed finance and customer service teams to understand core banking operations. Gained exposure to internal processes and built professional analytical skills by learning directly from senior staff.</p>
+        </div>
+      </div>
+ 
+      <div class="timeline-item reveal">
+        <div class="timeline-date">Expected May 2028</div>
+        <div>
+          <h3 class="timeline-title">B.S. in Business, Technology &amp; Entrepreneurship</h3>
+          <div class="timeline-company">NYU Stern School of Business · New York, NY</div>
+          <p class="timeline-desc">GPA: 4.0. Member of the Undergraduate Latin American Business Association. Coursework in Statistics, Calculus, Financial Accounting, and more.</p>
+        </div>
+      </div>
+ 
+      <div class="timeline-item reveal">
+        <div class="timeline-date">Feb 2021 — Dec 2024</div>
+        <div>
+          <h3 class="timeline-title">Bachelor of Science</h3>
+          <div class="timeline-company">Academia Hebrea de Panamá · Panamá City, Panamá</div>
+          <p class="timeline-desc">GPA: 4.9/5.0 — 98th Percentile. Gold and Bronze Medalist in the National Mathematics Competition in Panama.</p>
+        </div>
+      </div>
+ 
+    </div>
+  </section>
+ 
+  <!-- CONTACT -->
+  <section id="contact">
+    <p class="section-label reveal">Get in Touch</p>
+    <h2 class="section-title reveal">Open to opportunities,<br/>coffee chats &amp; referrals.</h2>
+    <p class="contact-sub reveal">Feel free to reach out about finance, fintech, or anything in between.</p>
+    <div class="contact-links reveal">
+      <a href="mailto:shayaharari@stern.nyu.edu" class="contact-link">
+        <span class="contact-link-label">Email</span>
+        <span class="contact-link-value">shayaharari@stern.nyu.edu</span>
+      </a>
+      <a href="https://www.linkedin.com/in/shaya-harari" target="_blank" class="contact-link">
+        <span class="contact-link-label">LinkedIn</span>
+        <span class="contact-link-value">linkedin.com/in/shaya-harari</span>
+      </a>
+      <a href="https://github.com/shayaharari" target="_blank" class="contact-link">
+        <span class="contact-link-label">GitHub</span>
+        <span class="contact-link-value">github.com/shayaharari</span>
+      </a>
+    </div>
+  </section>
+ 
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 Shaya Harari · NYU Stern BTE · Built with intention.</p>
+  </footer>
+ 
+  <script>
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+    reveals.forEach(el => observer.observe(el));
+  </script>
+ 
+</body>
+</html>
+ 
